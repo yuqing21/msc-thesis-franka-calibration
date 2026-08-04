@@ -1,0 +1,9 @@
+bind_host: "100.68.210.77"
+port: 8765
+allowed_client_ip: "100.126.29.85"
+frame_id: "panda_link0"
+max_message_bytes: 16384
+max_target_age_s: 2.0
+workspace_min_m: [-0.90, -0.90, -0.20]
+workspace_max_m: [0.90, 0.90, 1.20]
+

@@ -1,0 +1,31 @@
+{
+  "camera": {
+    "model": "Intel RealSense Depth Camera D435f",
+    "sdk": "RealSense SDK 2.0 / pyrealsense2",
+    "color_resolution": [640, 480],
+    "depth_resolution": [640, 480],
+    "fps": 30,
+    "warmup_frames": 30,
+    "depth_units": "m",
+    "rgb_channel_order": "RGB",
+    "requires_aligned_depth_to_rgb": true
+  },
+  "herbert_bridge": {
+    "host": "100.68.210.77",
+    "port": 8765,
+    "timeout_s": 3.0
+  },
+  "calibration": {
+    "minimum_samples": 15,
+    "max_rmse_m": 0.02,
+    "max_error_m": 0.04
+  },
+  "ball": {
+    "target_rgb": [0, 160, 70],
+    "chromaticity_tolerance": 0.2,
+    "min_area_px": 80,
+    "min_depth_m": 0.15,
+    "max_depth_m": 2.5,
+    "roi_xyxy": null
+  }
+}

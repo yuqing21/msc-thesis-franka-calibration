@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>franka_control_bridge</name>
+  <version>0.1.0</version>
+  <description>Safety-gated Windows-to-Herbert preview bridge and Franka Hand client.</description>
+  <maintainer email="liuy@example.com">liuy</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>actionlib</exec_depend>
+  <exec_depend>franka_gripper</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>rospy</exec_depend>
+</package>

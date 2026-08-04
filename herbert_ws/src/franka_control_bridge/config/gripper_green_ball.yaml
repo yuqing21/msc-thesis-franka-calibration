@@ -1,0 +1,22 @@
+object:
+  id: "green_ball_50mm"
+  description: "Compliant green ball used for gripper validation; not a calibration target."
+  measured_diameter_m: 0.050
+
+grasp:
+  width_m: 0.050
+  speed_m_s: 0.020
+  force_n: 2.0
+  epsilon_inner_m: 0.005
+  epsilon_outer_m: 0.005
+  timeout_s: 15.0
+
+release:
+  width_m: 0.079
+  speed_m_s: 0.020
+
+safety:
+  homing_required_after_hand_initialization: true
+  support_required_during_regrasp: true
+  keep_hands_clear_during_motion: true
+  emergency_stop_supervision_required: true

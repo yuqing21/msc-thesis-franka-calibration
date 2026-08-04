@@ -1,0 +1,10 @@
+<launch>
+  <node pkg="franka_control_bridge"
+        type="control_bridge.py"
+        name="franka_control_bridge"
+        output="screen"
+        required="true">
+    <rosparam command="load" file="$(find franka_control_bridge)/config/bridge.yaml" />
+  </node>
+</launch>
+

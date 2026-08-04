@@ -1,0 +1,2 @@
+pyrealsense2>=2.56.3,<3
+Pillow>=10,<13

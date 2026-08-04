@@ -1,0 +1,13 @@
+{
+  "python.defaultInterpreterPath": "/usr/bin/python3",
+  "python.analysis.extraPaths": [
+    "/opt/ros/noetic/lib/python3/dist-packages",
+    "${workspaceFolder}/devel/lib/python3/dist-packages"
+  ],
+  "files.exclude": {
+    "build": true,
+    "devel": true,
+    "logs": true
+  }
+}
+

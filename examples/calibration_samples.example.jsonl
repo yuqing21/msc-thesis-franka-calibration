@@ -1,0 +1,8 @@
+{"sample_id":"p001","units":"m","camera_point_m":[-0.30,-0.20,1.00],"robot_point_m":[0.70,-0.30,0.50]}
+{"sample_id":"p002","units":"m","camera_point_m":[0.10,-0.20,1.00],"robot_point_m":[0.70,0.10,0.50]}
+{"sample_id":"p003","units":"m","camera_point_m":[-0.30,0.20,1.00],"robot_point_m":[0.30,-0.30,0.50]}
+{"sample_id":"p004","units":"m","camera_point_m":[0.10,0.20,1.00],"robot_point_m":[0.30,0.10,0.50]}
+{"sample_id":"p005","units":"m","camera_point_m":[-0.20,-0.10,0.70],"robot_point_m":[0.60,-0.20,0.20]}
+{"sample_id":"p006","units":"m","camera_point_m":[0.00,0.10,1.30],"robot_point_m":[0.40,0.00,0.80]}
+{"sample_id":"p007","units":"m","camera_point_m":[-0.10,0.00,0.85],"robot_point_m":[0.50,-0.10,0.35]}
+{"sample_id":"p008","units":"m","camera_point_m":[-0.25,0.15,1.20],"robot_point_m":[0.35,-0.25,0.70]}
