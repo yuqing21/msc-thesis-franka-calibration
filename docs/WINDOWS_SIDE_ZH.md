@@ -14,8 +14,8 @@ Windows端不直接运行Franka实时控制环。
 
 ## 固定环境
 
-- 工作目录：`F:\bishe_ai_project`
-- Python：`F:\bishe_ai_project\.venv\Scripts\python.exe`
+- 工作目录：`F:\bishe_ai_project\cali`
+- Python：`F:\bishe_ai_project\cali\.venv\Scripts\python.exe`
 - 标定项目：`F:\bishe_ai_project\cali`
 - D435f序列号：`242322072812`
 - 正式采集流：1280×720，30 FPS，depth对齐到RGB
@@ -31,7 +31,7 @@ ssh liuy@100.68.210.77
 相机检查：
 
 ```powershell
-$env:PYTHONPATH = "F:\bishe_ai_project\cali\src"
+$env:PYTHONPATH = "$PWD\src"
 .\.venv\Scripts\python.exe -m msc_cali.cli.realsense_info
 .\.venv\Scripts\python.exe -m msc_cali.cli.realsense_live `
   --serial 242322072812 --width 1280 --height 720 --fps 30
@@ -42,7 +42,7 @@ $env:PYTHONPATH = "F:\bishe_ai_project\cali\src"
 实时预览必须先关闭，以释放相机：
 
 ```powershell
-$env:PYTHONPATH = "F:\bishe_ai_project\cali\src"
+$env:PYTHONPATH = "$PWD\src"
 .\.venv\Scripts\python.exe -m msc_cali.cli.capture_calibration_pose `
   --sample-id p006 `
   --output-dir "F:\bishe_ai_project\cali\data\calibration_session_20260804"

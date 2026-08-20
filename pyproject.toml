@@ -14,6 +14,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = ["pytest>=8"]
 realsense = ["pyrealsense2>=2.56.3,<3", "Pillow>=10,<13"]
+tracking = ["mediapipe>=0.10.20,<0.11"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -21,3 +22,4 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
+cache_dir = ".cache/pytest"

@@ -1,5 +1,7 @@
 # MSc Camera–Franka calibration and wrist-tracking project
 
+> 项目状态：**进行中**。标定求解与腕部追踪仍在持续开发、验证中。
+
 This repository contains the two-computer calibration and tracking stack used
 for the MSc thesis experiment. It is intentionally split by responsibility:
 
@@ -49,16 +51,16 @@ See the [2026-08-04 experiment log](docs/logs/2026-08-04.md) and the
 
 ## Windows tests
 
-Run from `F:\bishe_ai_project` with the fixed project interpreter:
+Run from `F:\bishe_ai_project\cali` with the calibration environment:
 
 ```powershell
-.\.venv\Scripts\python.exe -m pytest -q cali\tests
+.\.venv\Scripts\python.exe -m pytest -q
 ```
 
 ## RealSense quick check
 
 ```powershell
-$env:PYTHONPATH = "F:\bishe_ai_project\cali\src"
+$env:PYTHONPATH = "$PWD\src"
 .\.venv\Scripts\python.exe -m msc_cali.cli.realsense_info
 .\.venv\Scripts\python.exe -m msc_cali.cli.realsense_live `
   --serial 242322072812 --width 1280 --height 720 --fps 30

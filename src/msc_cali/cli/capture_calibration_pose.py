@@ -9,6 +9,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
+from msc_cali.ball_detection import BallDetectorConfig
 from msc_cali.realsense import RealSenseConfig, RealSenseD435f
 from msc_cali.robot_state import FrankaStateOnce, average_transforms, rotation_difference_rad
 from msc_cali.sphere_detection import fit_known_radius_sphere
@@ -51,6 +52,12 @@ def main() -> int:
     parser.add_argument("--fps", type=int, default=30)
     parser.add_argument("--warmup-frames", type=int, default=15)
     parser.add_argument("--ball-radius-m", type=float, default=0.025)
+    parser.add_argument("--ball-target-rgb", type=int, nargs=3, metavar=("R", "G", "B"))
+    parser.add_argument("--ball-chromaticity-tolerance", type=float, default=0.20)
+    parser.add_argument("--ball-min-channel-dominance", type=float, default=0.08)
+    parser.add_argument("--ball-min-brightness", type=float, default=0.12)
+    parser.add_argument("--ball-min-area-px", type=int, default=80)
+    parser.add_argument("--ball-roi", type=int, nargs=4, metavar=("X0", "Y0", "X1", "Y1"))
     parser.add_argument("--maximum-joint-speed-rad-s", type=float, default=0.01)
     parser.add_argument("--maximum-drift-m", type=float, default=0.002)
     parser.add_argument("--maximum-drift-deg", type=float, default=0.5)
@@ -60,6 +67,18 @@ def main() -> int:
     args = parser.parse_args()
     if args.frames < 5:
         parser.error("--frames must be at least 5")
+    if args.ball_target_rgb is not None and any(not 0 <= value <= 255 for value in args.ball_target_rgb):
+        parser.error("--ball-target-rgb values must lie in [0, 255]")
+
+    detector_defaults = BallDetectorConfig()
+    detector_config = BallDetectorConfig(
+        target_rgb=tuple(args.ball_target_rgb) if args.ball_target_rgb else detector_defaults.target_rgb,
+        chromaticity_tolerance=args.ball_chromaticity_tolerance,
+        min_channel_dominance=args.ball_min_channel_dominance,
+        min_brightness=args.ball_min_brightness,
+        min_area_px=args.ball_min_area_px,
+        roi_xyxy=tuple(args.ball_roi) if args.ball_roi else None,
+    )
 
     output_dir = args.output_dir / args.sample_id
     if output_dir.exists() and any(output_dir.iterdir()):
@@ -93,6 +112,7 @@ def main() -> int:
                 frame.depth_m,
                 frame.intrinsics,
                 args.ball_radius_m,
+                detector_config,
             )
             rgb_frames.append(frame.rgb)
             depth_frames.append(frame.depth_m)
@@ -124,6 +144,7 @@ def main() -> int:
         median_depth,
         intrinsics,
         args.ball_radius_m,
+        detector_config,
     )
     if aggregate_sphere.fit_rmse_m > args.maximum_sphere_fit_rmse_m:
         raise RuntimeError(
@@ -144,6 +165,7 @@ def main() -> int:
                 group_depth,
                 intrinsics,
                 args.ball_radius_m,
+                detector_config,
             ).center_camera_m
         )
     group_centers_array = np.asarray(group_centers)
@@ -198,6 +220,14 @@ def main() -> int:
         },
         "sphere": {
             "known_radius_m": args.ball_radius_m,
+            "detector": {
+                "target_rgb": list(detector_config.target_rgb),
+                "chromaticity_tolerance": detector_config.chromaticity_tolerance,
+                "min_channel_dominance": detector_config.min_channel_dominance,
+                "min_brightness": detector_config.min_brightness,
+                "min_area_px": detector_config.min_area_px,
+                "roi_xyxy": list(detector_config.roi_xyxy) if detector_config.roi_xyxy else None,
+            },
             "aggregate": aggregate_sphere.to_dict(),
             "group_size_frames": args.temporal_group_frames,
             "group_centers_camera_m": group_centers_array.tolist(),

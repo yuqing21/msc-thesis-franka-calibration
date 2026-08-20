@@ -66,7 +66,7 @@ def _load_pyrealsense2() -> Any:
     except ImportError as exc:
         raise RealSenseUnavailableError(
             "pyrealsense2 is not installed. Install cali/requirements-realsense.txt "
-            "with F:/bishe_ai_project/.venv/Scripts/python.exe."
+            "with F:/bishe_ai_project/cali/.venv/Scripts/python.exe."
         ) from exc
 
 
@@ -214,4 +214,3 @@ class RealSenseD435f:
 
     def __exit__(self, exc_type: Any, exc: Any, traceback: Any) -> None:
         self.stop()
-

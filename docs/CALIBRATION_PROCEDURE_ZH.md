@@ -40,10 +40,10 @@ ChArUco/AprilTag刚性板；彩色点法可以先打通流程，但彩色目标�
 ## 求解和验收
 
 ```powershell
-$env:PYTHONPATH = "F:\bishe_ai_project\cali\src"
+$env:PYTHONPATH = "$PWD\src"
 .\.venv\Scripts\python.exe -m msc_cali.cli.solve_calibration `
-  --input cali\data\calibration_samples.jsonl `
-  --output cali\outputs\camera_to_robot.json `
+  --input data\calibration_samples.jsonl `
+  --output outputs\camera_to_robot.json `
   --max-rmse-m 0.020 `
   --max-error-m 0.040
 ```

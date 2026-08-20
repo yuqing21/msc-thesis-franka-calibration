@@ -1,5 +1,5 @@
 {
-  "python.defaultInterpreterPath": "${workspaceFolder}/../.venv/Scripts/python.exe",
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
   "python.analysis.extraPaths": [
     "${workspaceFolder}/src"
   ],
@@ -14,4 +14,3 @@
   },
   "cmake.sourceDirectory": "F:/bishe_ai_project/cali/herbert_ws/src/franka_control_bridge"
 }
-

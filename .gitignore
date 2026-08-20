@@ -1,6 +1,8 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.cache/
+.local_keys/
 .mypy_cache/
 .ruff_cache/
 .venv/
@@ -9,6 +11,7 @@ dist/
 *.egg-info/
 data/captures/**
 outputs/**
+models/*.task
 data/calibration_session_*/**/frames.npz
 !data/captures/.gitkeep
 !outputs/.gitkeep
